@@ -1,0 +1,20 @@
+<div class="container">
+  <label class="h4 bg-light">ジャンル編集</label>
+
+  <div class="row">
+    <div class="col-lg-10">
+      <% if flash[:genre_edit_error] %>
+        <p class="text-danger" id="genre_edit_error">
+          <%= flash[:genre_edit_error] %>
+        </p>
+      <% end %>
+      <div class="form mt-5 mb-5">
+        <%= form_with model: @genre, url: admin_genre_path do |f| %>
+          <%= f.label :ジャンル, class:"mr-3"%>
+          <%= f.text_field :name %>
+          <%= f.submit "変更を保存", class:"btn btn-success ml-3" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
