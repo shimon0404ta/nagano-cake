@@ -1,0 +1,55 @@
+<div class="container">
+  <label class="h4 bg-light">
+    <%= (@customer.last_name + @customer.first_name) %>さんの会員情報
+  </label>
+  <div class="row mb-2">
+    <div class="col-lg-6">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>会員ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td><%= (@customer.last_name + "　" + @customer.first_name) %></td>
+          </tr>
+          <tr>
+            <td>フリガナ</td>
+            <td><%= (@customer.last_name_kana + "　" + @customer.first_name_kana) %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <td>
+              <% if @customer.is_deleted == true %>
+                <p class="text-success">有効</p>
+              <% else %>
+                <p class="text-secondary">退会</p>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= link_to "編集する", edit_admin_customer_path(@customer), class:"btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
