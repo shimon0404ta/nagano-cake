@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row py-5">
+    <div class="col-lg-2">
+      <table class="table" border="1">
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+
+          <tr>
+            <td>
+              <% @genres.each do |genre| %>
+              <%=link_to genre.name, root_path %><br>
+              <% end %>
+              </td>
+          </tr>
+      </table>
+    </div>
+
+    <div class="col-lg-8" style="background-color: orange;">
+      <p>ようこそ長野ケーキへ！</p>
+      <p>このサイトは、ケーキ販売のECサイトになります。</p>
+      <p>会員でない方も商品の閲覧はできますが、</p>
+      <p>購入には会員登録が必要になります。</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-10">
+      <h4>新着商品</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <% @items.each do |item| %>
+      <div class="col-lg-2">
+        <%= link_to image_tag(item.get_item_image(150,100)), item_path(item.id) %><br>
+          <%= item.name %>
+        <%= item.price %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   
+  root to: 'homes#top'
+  get 'about' => 'homes#about'
+  
   namespace :admin do
-    root to: "homes#top"
     resources :customers, only: [:show, :index, :edit, :update]
     resources :orders, only: [:show, :index, :edit]
     resources :items
     resources :genres
+  end
+  
+  scope module: 'public' do
+    resources :items, only: [:show, :index]
   end
   
   # 顧客用

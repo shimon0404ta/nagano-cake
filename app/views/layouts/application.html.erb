@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>nagano_cake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,79 +11,71 @@
   </head>
 
   <body>
-    <header class="shadow-sm">
 
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <%#= link_to image_tag('about-img.jpg', size: '100x80', alt: "#"), root_path %>
-          <h3>LOGO(仮)</h3>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto my-2">
-              <% if admin_signed_in? %>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-                </li>
-              <% elsif customer_signed_in? %>
-                <li class="nav-item my-3 mr-5">
-                  <%= "ようこそ、#{current_customer.last_name}さん！" %>
-                </li>
+    <header>
+      <div class="container">
+        <div class="row justify-content-between border align-items-center">
 
-                <li class="nav-item btn btn-outline-secondary mr-2 ml-5">
-                  <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
-                  </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
-                </li>
+          <div class="col-3">
+            <h1 class="sample"><%= link_to 'Naganocake', root_path, data: {"turbolinks" => false}, style: "font-family: HiraMinPro-W6; color: #000000;" %></h1>
+            <% if customer_signed_in? %>
+              <p>ログイン中</p>
+            <% end %>
+          </div>
+
+          <div class="col-6">
+            <ul class="list-group list-group-horizontal">
+              <% if customer_signed_in? %>
+
+                <li class="list-group-item"><%= link_to 'マイページ', mypage_path %></li>
+                <li class="list-group-item"><%= link_to '商品一覧', items_path %></li>
+                <li class="list-group-item"><%= link_to 'カート', cart_items_path %></li>
+                <li class="list-group-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+                <!--a@a/aaaaaa-->
+                <!--b@b/bbbbbb-->
+
+              <% elsif admin_signed_in? %>
+                <li class="list-group-item"><%= link_to '商品一覧', admin_items_path %></li>
+                <li class="list-group-item"><%= link_to '会員一覧', admin_customers_path %></li>
+                <li class="list-group-item"><%= link_to '注文一覧', admin_orders_path %></li>
+                <li class="list-group-item"><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+                <li class="list-group-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <!--a@admin/aaaaaa-->
+
               <% else %>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%#= link_to "About", about_path, class: 'nav-link text-dark' %>
-                  <h3>About(未)</h3>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%#= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
-                  <h3>商品一覧(未)</h3>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item btn btn-outline-secondary mr-2">
-                  <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
-                </li>
+                <li class="list-group-item"><%= link_to 'About', about_path %></li>
+                <li class="list-group-item"><%= link_to '商品一覧', items_path %></li>
+                <li class="list-group-item"><%= link_to '新規登録', new_customer_registration_path %></li>
+                <li class="list-group-item"><%= link_to 'ログイン', new_customer_session_path %></li>
+
               <% end %>
             </ul>
           </div>
+
+          <div class="col-3">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="キーワードを入力">
+              <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+            </div>
+          </div>
+
         </div>
-      </nav>
+      </div>
     </header>
 
-    <div class="shadow-sm mt-3 pb-3">
+    <main>
       <%= yield %>
-    </div>
+    </main>
 
     <footer>
       <div class="container">
-        <div class="small text-center text-dark" style="margin: 50px 0;">
-          Copyright © 2022  NaganoCake
+        <div class="row">
+          <div class="col">
+            Copyright © Infratop Inc. All Rights Reserved.
+          </div>
         </div>
       </div>
     </footer>
   </body>
+
 </html>
