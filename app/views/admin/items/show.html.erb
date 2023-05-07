@@ -1,51 +1,43 @@
 <div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-10">
-      <label class="h4 bg-light">商品詳細</label>
-    </div>
+  <div class="row py-4">
+    <h5>商品詳細</h5>
   </div>
-  <div class="row mb-2">
-    <div class="col-lg-4">
-      <%= attachment_image_tag @item, :image, :fill, 350, 250, fallback: 'no-image.jpg' %>
-    </div>
-    <div class="col-lg-8">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <td>商品名</td>
-            <td><%= @item.name %></td>
-          </tr>
-          <tr>
-            <td>商品説明</td>
-            <td><%= @item.introduction %></td>
-          </tr>
-          <tr>
-            <td>ジャンル</td>
-            <td><%= @item.genre.name %></td>
-          </tr>
-          <tr>
-            <td>税込価格<br>(税抜価格)</td>
-            <td><%= (@item.price*1.1).floor.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>) 円</td>
-          </tr>
-          <tr>
-            <td>販売ステータス</td>
-            <td>
-              <% if @item.is_active == false %>
-                <p class="text-secondary">販売停止中</p>
-              <% else %>
-                <p class="text-success">販売中</p>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-6"></div>
+
+  <div class="row py-4">
     <div class="col-lg-6">
-      <%= link_to "編集する", edit_admin_item_path(@item), class:"btn btn-success" %>
+      <%= image_tag @item.get_item_image(300,100) %>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="row">
+        <h4><%= @item.name %></h4>
+      </div>
+
+      <div class="row">
+        <h5><%= @item.introduction %></h5>
+      </div>
+
+      <div class="row">
+        <p><%= @item.genre.name %></p>
+      </div>
+
+      <div class="row">
+        <p><%= @item.price %>円</p>
+      </div>
+
+      <div class="row">
+        <% if @item.status %>
+          <p>販売中</p>
+        <% else %>
+          <p>販売停止中</p>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <%= link_to edit_admin_item_path(params[:id]) do %>
+          <button class="btn btn-primary">編集する</button>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

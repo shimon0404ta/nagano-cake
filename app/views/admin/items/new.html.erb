@@ -1,78 +1,94 @@
 <div class="container">
-  <div class="row mb-2">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-10">
-      <label class="h4 bg-light">商品新規登録</label>
-      <div class="error_message">
-        <% if flash[:item_create_error] %>
-          <p id="item_create_error">
-            <%= flash[:item_create_error] %>
-          </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :商品画像 %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.attachment_field :image %>
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :商品名 %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.text_field :name %>
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :商品説明 %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.text_area :introduction, size: "30x5" %>
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :ジャンル %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :税抜き価格 %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.text_field :price %>円
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-2">
-      <%= f.label :販売ステータス %>
-    </div>
-    <div class="col-lg-7">
-      <%= f.radio_button :is_active, true %> 販売中
-      <%= f.radio_button :is_active, false %> 販売停止中
-    </div>
-  </div>
-  <div class="row mb-2">
-    <div class="col-lg-12 text-center">
-      <%= f.submit "新規登録", class:"btn btn-success" %>
-    </div>
+  <div class="row">
 
+    <div class="form-horizontal m-3" role="form">
+
+  　<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+
+  　　<div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :image, '商品画像', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+        </div>
+      </div>
+
+  　　<div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :name, '商品名', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.text_field :name, autocomplete: "name", placeholder: "商品名" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :introduction, '商品説明', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.text_area :introduction, autocomplete: "introduction", placeholder: "ここに説明文を記述します" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :genre_id, 'ジャンル', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.select :genre_id, Genre.all.map{ |genre| [genre.name, genre.id]} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :price, '税抜価格', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <%= f.text_field :price, autocomplete: "price" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :status, '販売ステータス', class:'control-label' %>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <%= f.radio_button :status, Item.status.key(true) %>
+              <%= f.label :status_buy_now, Item.status_i18n[:buy_now] %>
+            </div>
+            <div class="row">
+              <%= f.radio_button :status, Item.status.key(false) %>
+              <%= f.label :status_sold_out, Item.status_i18n[:sold_out] %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    　<div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+
+          </div>
+          <div class="col-lg-8">
+            <%= f.submit "商品追加", class:'btn btn-success' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
   </div>
-  <% end %>
 </div>
