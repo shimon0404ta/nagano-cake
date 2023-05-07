@@ -15,9 +15,8 @@
     <header>
       <div class="container">
         <div class="row justify-content-between border align-items-center">
-
           <div class="col-3">
-            <h1 class="sample"><%= link_to 'Naganocake', root_path, data: {"turbolinks" => false}, style: "font-family: HiraMinPro-W6; color: #000000;" %></h1>
+            <h1 class="sample"><%= link_to 'Nagano cake', root_path, data: {"turbolinks" => false}, style: "font-family: HiraMinPro-W6; color: #000000;" %></h1>
             <% if customer_signed_in? %>
               <p>ログイン中</p>
             <% end %>
@@ -31,8 +30,6 @@
                 <li class="list-group-item"><%= link_to '商品一覧', items_path %></li>
                 <li class="list-group-item"><%= link_to 'カート', cart_items_path %></li>
                 <li class="list-group-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
-                <!--a@a/aaaaaa-->
-                <!--b@b/bbbbbb-->
 
               <% elsif admin_signed_in? %>
                 <li class="list-group-item"><%= link_to '商品一覧', admin_items_path %></li>
@@ -40,7 +37,6 @@
                 <li class="list-group-item"><%= link_to '注文一覧', admin_orders_path %></li>
                 <li class="list-group-item"><%= link_to 'ジャンル一覧', admin_genres_path %></li>
                 <li class="list-group-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-                <!--a@admin/aaaaaa-->
 
               <% else %>
                 <li class="list-group-item"><%= link_to 'About', about_path %></li>
@@ -54,8 +50,8 @@
 
           <div class="col-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="キーワードを入力">
-              <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+              <input type="text" class="form-control" placeholder="Search">
+              <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> </button>
             </div>
           </div>
 
