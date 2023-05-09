@@ -7,14 +7,18 @@
         <p class="text-danger" id="genre_edit_error">
           <%= flash[:genre_edit_error] %>
         </p>
-      <% end %>
+      <% end %>      
       <div class="form mt-5 mb-5">
         <%= form_with model: @genre, url: admin_genre_path do |f| %>
           <%= f.label :ジャンル, class:"mr-3"%>
-          <%= f.text_field :name %>
+          <%= f.text_field :genre %>
           <%= f.submit "変更を保存", class:"btn btn-success ml-3" %>
-        <% end %>
+        <% end %>      
       </div>
     </div>
+  </div>
+</div>
+    
+    </table>
   </div>
 </div>
