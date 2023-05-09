@@ -1,0 +1,6 @@
+ja:
+  enums:
+    item:
+      status:
+        buy_now: "販売中"
+        sold_out: "販売停止中"

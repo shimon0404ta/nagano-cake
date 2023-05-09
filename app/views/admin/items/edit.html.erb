@@ -67,12 +67,12 @@
           </div>
           <div class="col-lg-8">
             <div class="row">
-              <%= f.radio_button :status, Item.status.key(true) %>
-              <%= f.label :status_buy_now, Item.status_i18n[:buy_now] %>
+              <%= f.radio_button :status, Item.statuses.key(true) %>
+              <%= f.label :status_buy_now, Item.statuses_i18n[:buy_now] %>
             </div>
             <div class="row">
-              <%= f.radio_button :status, Item.status.key(false) %>
-              <%= f.label :status_sold_out, Item.status_i18n[:sold_out] %>
+              <%= f.radio_button :status, Item.statuses.key(false) %>
+              <%= f.label :status_sold_out, Item.statuses_i18n[:sold_out] %>
             </div>
           </div>
         </div>
