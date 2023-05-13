@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   scope module: 'public' do
     resources :items, only: [:show, :index]
+    resources :cart_items, only: [:index, :update, :create, :destroy]
   end
   
   # 顧客用

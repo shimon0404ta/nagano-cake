@@ -30,20 +30,20 @@
             <ul class="list-group list-group-horizontal">
               <% if customer_signed_in? %>
 
-                <li class="nav-item my-3 mr-5">
+                <li class="nav-item my-3 mr-9 ">
                   <%= "ようこそ、#{current_customer.last_name}さん！" %>
                 </li>
 
-                <li class="nav-item btn btn-outline-secondary mx-4">
-                  <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
+                <li class="nav-item btn btn-outline-secondary mr-2">
+                  <%= link_to "マイページ", customer_session_path, class: 'nav-link text-dark' %>
                   </li>
-                <li class="nav-item btn btn-outline-secondary mx-4">
+                <li class="nav-item btn btn-outline-secondary mr-2">
                   <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
                 </li>
-                <li class="nav-item btn btn-outline-secondary mx-4">
+                <li class="nav-item btn btn-outline-secondary mr-2">
                   <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
                 </li>
-                <li class="nav-item btn btn-outline-secondary mx-4">
+                <li class="nav-item btn btn-outline-secondary mr-2">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
                 </li>
 
