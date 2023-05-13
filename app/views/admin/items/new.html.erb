@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
-
     <div class="form-horizontal m-3" role="form">
+      <label class="h4 bg-light">商品新規登録</label>
+        <div class="error_message">
+          <% if flash[:item_create_error] %>
+            <p id="item_create_error">
+              <%= flash[:item_create_error] %>
+            </p>
+          <% end %>  
 
   　<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
 
@@ -18,7 +24,7 @@
 
   　　<div class="form-group">
         <div class="form-inline">
-          <div class="col-lg-4">
+          <div class="col-lg-4 ">
             <%= f.label :name, '商品名', class:'control-label' %>
           </div>
           <div class="col-lg-8">
@@ -44,7 +50,7 @@
             <%= f.label :genre_id, 'ジャンル', class:'control-label' %>
           </div>
           <div class="col-lg-8">
-            <%= f.select :genre_id, Genre.all.map{ |genre| [genre.name, genre.id]} %>
+            <%= f.select :genre_id, Genre.all.map{ |genre| [genre.genre, genre.id]} %>
           </div>
         </div>
       </div>
@@ -84,7 +90,7 @@
 
           </div>
           <div class="col-lg-8">
-            <%= f.submit "商品追加", class:'btn btn-success' %>
+            <%= f.submit "商品追加", class:'btn btn-success' %><br>
           </div>
         </div>
       </div>

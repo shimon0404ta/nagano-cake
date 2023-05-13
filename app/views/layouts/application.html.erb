@@ -12,14 +12,15 @@
 
   <body>
 
-    <header>
-      <div class="container">
-        <div class="row justify-content-between border align-items-center">
-          <div class="col-4">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="row col-12  justify-content-between align-items-center">
+        <div class="container">
+          <div class="col-4 mt-4">
             <h1 class="sample">
               <%= link_to 'Nagano-cake', root_path, data: {"turbolinks" => false}, style: "font-family: HiraMinPro-W6; color: #000000;" %>
             </h1>
-            
+
             <% if customer_signed_in? %>
               <p>ログイン中</p>
             <% end %>
@@ -29,35 +30,67 @@
             <ul class="list-group list-group-horizontal">
               <% if customer_signed_in? %>
 
-                <li class="list-group-item"><%= link_to 'マイページ', mypage_path %></li>
-                <li class="list-group-item"><%= link_to '商品一覧', items_path %></li>
-                <li class="list-group-item"><%= link_to 'カート', cart_items_path %></li>
-                <li class="list-group-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+                <li class="nav-item my-3 mr-5">
+                  <%= "ようこそ、#{current_customer.last_name}さん！" %>
+                </li>
+
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
+                  </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
 
               <% elsif admin_signed_in? %>
-                <li class="list-group-item"><%= link_to '商品一覧', admin_items_path %></li>
-                <li class="list-group-item"><%= link_to '会員一覧', admin_customers_path %></li>
-                <li class="list-group-item"><%= link_to '注文一覧', admin_orders_path %></li>
-                <li class="list-group-item"><%= link_to 'ジャンル一覧', admin_genres_path %></li>
-                <li class="list-group-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <li class="nav-item btn btn-outline-secondary px-1 mx-2">
+                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary px-1 mx-2">
+                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary px-1 mx-2">
+                  <%= link_to "注文履歴一覧", admin_orders_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary px-1 mx-2">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary px-1 mx-2">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
 
               <% else %>
-                <li class="list-group-item"><%= link_to 'About', about_path %></li>
-                <li class="list-group-item"><%= link_to '商品一覧', items_path %></li>
-                <li class="list-group-item"><%= link_to '新規登録', new_customer_registration_path %></li>
-                <li class="list-group-item"><%= link_to 'ログイン', new_customer_session_path %></li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item btn btn-outline-secondary mx-4">
+                  <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+                </li>
 
               <% end %>
             </ul>
           </div>
-          
+
           <div class="col-3">
           </div>
 
-          <div class="col-3">
+          <div class="col-3 mt-2">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search">
-              <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> </button>
+              <button class="btn btn-outline-success" type="button" id="button-addon2">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
           </div>
 
@@ -65,16 +98,14 @@
       </div>
     </header>
 
-    <main>
+    <div class="shadow-sm mt-3 pb-3">
       <%= yield %>
-    </main>
+    </div>
 
     <footer>
       <div class="container">
-        <div class="row">
-          <div class="col">
-            Copyright © Infratop Inc. All Rights Reserved.
-          </div>
+        <div class="small text-center text-dark" style="margin: 40px 0;">
+          Copyright © Infratop Inc. All Rights Reserved.
         </div>
       </div>
     </footer>

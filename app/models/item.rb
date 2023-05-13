@@ -17,5 +17,7 @@ class Item < ApplicationRecord
   def with_tax_price
     (price*1.1).floor
   end
+  
+  validates :price, presence: true, numericality: { only_integer: true, greater_than: 0}
 
 end

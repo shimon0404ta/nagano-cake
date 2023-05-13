@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-
     <div class="form-horizontal m-3" role="form">
+      <label class="h4 bg-light">商品編集</label>
 
   　<%= form_with model: @item, url: admin_item_path(params[:id]), method: :patch do |f| %>
 
@@ -44,7 +44,7 @@
             <%= f.label :genre_id, 'ジャンル', class:'control-label' %>
           </div>
           <div class="col-lg-8">
-            <%= f.select :genre_id, Genre.all.map{ |genre| [genre.name, genre.id]} %>
+            <%= f.select :genre_id, Genre.all.map{ |genre| [genre.genre, genre.id]} %>
           </div>
         </div>
       </div>

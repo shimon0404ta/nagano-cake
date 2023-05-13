@@ -16,9 +16,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-    item.save
-    redirect_to admin_item_path(item.id)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to admin_item_path(@item.id)
+    else
+      flash[:item_create_error] = "商品の新規登録内容に不備があります"
+      redirect_to new_admin_item_path
+    end
   end
 
   def destroy
