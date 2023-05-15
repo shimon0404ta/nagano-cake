@@ -1,0 +1,26 @@
+<div class="container">
+  <label class="h4 bg-light">配送先編集</label>
+  <div class="row mb-2">
+    <div class="col-lg-10">
+      <%= form_with model: @shipping_address, url: shipping_address_path, method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>郵便番号(ハイフンなし)</td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, size: "60x30" %></td>
+          </tr>
+          <tr>
+            <td>宛名</td>
+            <td><%= f.text_field :name %></td>
+            <td><%= f.submit "変更内容を保存", class:"btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>      
+    </div>
+  </div>
+</div>

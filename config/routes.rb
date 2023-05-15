@@ -6,13 +6,27 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:show, :index, :edit, :update]
     resources :orders, only: [:show, :update, :index]
+    resources :order_details, only: [:update]
     resources :items
     resources :genres
   end
   
   scope module: 'public' do
+    
+    get 'orders/confirm'            => "orders#confirm"
+    post 'orders/confirm'           => "orders#confirm"
+    get 'orders/complete'           => "orders#complete"
+    get 'customers/my_page'         => "customers#show"
+    get 'customers/edit'            => "customers#edit"
+    patch 'customers'               => "customers#update"
+    get 'customers/unsubscribe'     => "customers#unsubscribe"
+    patch 'customers/withdraw'      => "customers#withdraw"
+    
+    
     resources :items, only: [:show, :index]
     resources :cart_items, only: [:index, :update, :create, :destroy]
+    resources :orders, only: [:new, :show, :index, :create]
+    resources :shipping_addresses,   only: [:index, :edit, :create, :update, :destroy]
   end
   
   # 顧客用

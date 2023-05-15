@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row py-5">
+
+    <div class="col-lg-2">
+      <table class="table" border="1">
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+
+          <tr>
+            <td>
+              <% @genres.each do |genre| %>
+              <%=link_to genre.genre, root_path %><br>
+              <% end %>
+              </td>
+          </tr>
+      </table>
+    </div>
+
+    <div class="col-lg-4">
+      <%= image_tag @item.get_item_image(400,200) %>
+    </div>
+
+    <div class="col-lg-5">
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+      <h3 class="py-2"><%= @item.name %></h3>
+      <h4 class="py-2"><%= @item.introduction %></h4>
+      <label class="h4">¥<%= (@item.price*1.1).floor.to_s(:delimited) %> </label>(税込)<br>
+      <%= f.select :amount, *[1..10], {:prompt => "個数選択"}, class:"mr-3" %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

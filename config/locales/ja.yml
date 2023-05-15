@@ -6,7 +6,7 @@ ja:
         sold_out: "販売停止中"
 
     order:
-      method_payment:
+      payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
 
