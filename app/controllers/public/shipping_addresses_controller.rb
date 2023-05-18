@@ -1,6 +1,6 @@
 class Public::ShippingAddressesController < ApplicationController
   before_action :authenticate_customer
-  
+
   def create
     @shipping_address = Shipping_address.new(address_params)
     @shipping_address.customer_id = current_customer.id
@@ -13,7 +13,7 @@ class Public::ShippingAddressesController < ApplicationController
       render :index
     end
   end
-  
+
   def index
     @shipping_address = Shipping_Address.new
     @shipping_addresses = current_customer.shipping_addresses
@@ -22,7 +22,7 @@ class Public::ShippingAddressesController < ApplicationController
   def edit
     @shipping_address = Shipping_address.find(params[:id])
   end
-  
+
   def update
     @shipping_address = Shipping_address.find(params[:id])
     if @shipping_address.update(shipping_address_params)
@@ -31,17 +31,17 @@ class Public::ShippingAddressesController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @shipping_address = Shipping_address.find(params[:id])
     @shipping_address.destroy
     redirect_to shipping_addresses_path
   end
-  
+
   private
-  
+
   def address_params
     params.require(:shippingaddress).permit(:postal_code, :address, :name, :customer_id)
   end
-  
+
 end

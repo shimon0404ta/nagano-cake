@@ -4,15 +4,15 @@ Rails.application.routes.draw do
   get 'about' => 'homes#about'
   
   namespace :admin do
-    resources :customers, only: [:show, :index, :edit, :update]
-    resources :orders, only: [:show, :update, :index]
-    resources :order_details, only: [:update]
+    resources :customers,      only: [:show, :index, :edit, :update]
+    resources :orders,         only: [:show, :update, :index]
+    resources :order_details,  only: [:update]
     resources :items
     resources :genres
   end
   
   scope module: 'public' do
-    
+    delete 'cart_items'             => "cart_items#destroy_all", as: "cart_items_destroy_all"
     get 'orders/confirm'            => "orders#confirm"
     post 'orders/confirm'           => "orders#confirm"
     get 'orders/complete'           => "orders#complete"
@@ -22,10 +22,10 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'     => "customers#unsubscribe"
     patch 'customers/withdraw'      => "customers#withdraw"
     
-    
-    resources :items, only: [:show, :index]
-    resources :cart_items, only: [:index, :update, :create, :destroy]
-    resources :orders, only: [:new, :show, :index, :create]
+    resources :genres,               only: [:show]
+    resources :items,                only: [:show, :index]
+    resources :cart_items,           only: [:index, :update, :create, :destroy]
+    resources :orders,               only: [:new, :show, :index, :create]
     resources :shipping_addresses,   only: [:index, :edit, :create, :update, :destroy]
   end
   
