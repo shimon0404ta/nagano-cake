@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     delete 'cart_items'             => "cart_items#destroy_all", as: "cart_items_destroy_all"
     get 'orders/confirm'            => "orders#confirm"
     post 'orders/confirm'           => "orders#confirm"
-    get 'orders/complete'           => "orders#complete"
+    get 'orders/thanks'             => "orders#thanks"
     get 'customers/my_page'         => "customers#show"
     get 'customers/edit'            => "customers#edit"
     patch 'customers'               => "customers#update"

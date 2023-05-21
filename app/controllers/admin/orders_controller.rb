@@ -5,8 +5,8 @@ class Admin::OrdersController < ApplicationController
       @total_price = 0
       @order_details.each do |order_detail|
         @total_price += (order_detail.item.price * 1.1 * order_detail.amount).floor
+      end
     end
-  end
 
   def update
     order = Order.find(params[:id])
