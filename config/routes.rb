@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   end
   
   scope module: 'public' do
+    get 'customers/my_page'         => "customers#show"
+    get 'customers/edit'            => "customers#edit"
+    patch 'customers'               => "customers#update"
+    get 'customers/unsubscribe'     => "customers#unsubscribe"
+    patch 'customers/withdraw'      => "customers#withdraw"
     delete 'cart_items'             => "cart_items#destroy_all", as: "cart_items_destroy_all"
     get 'orders/confirm'            => "orders#confirm"
     post 'orders/confirm'           => "orders#confirm"

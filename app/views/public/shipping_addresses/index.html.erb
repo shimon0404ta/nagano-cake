@@ -43,14 +43,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @shipping_addresses.each do |address| %>
+          <% @shipping_addresses.each do |shipping_address| %>
           <tr>
             <td><%= shipping_address.postal_code %></td>
             <td><%= shipping_address.address %></td>
             <td><%= shipping_address.name %></td>
             <td>
-              <%= link_to "編集する", edit_address_path(address), class:"btn btn-success mr-3" %>
-              <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger" %>
+              <%= link_to "編集する", edit_shipping_addresses_path(shipping_address), class:"btn btn-success mr-3" %>
+              <%= link_to "削除する", shipping_addresses_path(shipping_address), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger" %>
             </td>
             </tr>
           <% end %>
