@@ -1,5 +1,5 @@
 class Public::ShippingAddressesController < ApplicationController
-  before_action :authenticate_customer
+  before_action :authenticate_customer!
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
@@ -7,7 +7,7 @@ class Public::ShippingAddressesController < ApplicationController
     if @shipping_address.save
       redirect_to shipping_addresses_path
     else
-      @shipping_address = Shipping_address.new
+      @shipping_address = ShippingAddress.new
       @shipping_addresses = current_customer.shipping_addresses
       flash[:notice] = "error"
       render :index
@@ -40,7 +40,7 @@ class Public::ShippingAddressesController < ApplicationController
 
   private
 
-  def address_params
+  def shipping_address_params
     params.require(:shipping_address).permit(:postal_code, :address, :name, :customer_id)
   end
 

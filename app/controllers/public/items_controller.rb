@@ -10,5 +10,5 @@ class Public::ItemsController < ApplicationController
     @items = Item.page(params[:page])
     @genres = Genre.all
   end
-  
+
 end

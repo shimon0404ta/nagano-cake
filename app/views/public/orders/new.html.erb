@@ -21,7 +21,8 @@
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :address, "登録済み住所から選択" %>
       <div class="ml-3 mb-2">
-        <%= f.select :shipping_address_id, options_from_collection_for_select(@shipping_address, :id, shipping_address_display) %>
+        <!--全部住所出る-->
+        <%= f.select :shipping_address_id, options_from_collection_for_select(ShippingAddress.all, :id, :shipping_address_display) %>
       </div>
     <% end %>
     <%= f.radio_button :select_address, 2 %>

@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row py-5">
+    <div class="col">
+      <h4>会員情報編集</h4>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="form-horizontal m-3" role="form">
+      <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :last_name, '姓', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.text_field :last_name, autocomplete: "last_name", placeholder: "令和" %>
+          </div>
+          <div class="col-lg-2">
+            <%= f.label :first_name, '名', class:'control-label' %>
+          </div>
+          <div class="col-lg-2">
+            <%= f.text_field :first_name, autocomplete: "first_name", placeholder: "花子" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :last_name_kana, 'セイ', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", placeholder: "令和" %>
+          </div>
+          <div class="col-lg-2">
+            <%= f.label :first_name_kana, 'メイ', class:'control-label' %>
+          </div>
+          <div class="col-lg-2">
+            <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder: "花子" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :postal_code, '郵便番号', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.text_field :postal_code %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :address, '住所', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.text_field :address %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :telephone_number, '電話番号', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.text_field :telephone_number %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4">
+            <%= f.label :email, 'メールアドレス', class:'control-label' %>
+          </div>
+          <div class="col-lg-4">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+            <% end %>
+          </div>
+          <div class="col-lg-4">
+            <%#= link_to customers_path do %><%= link_to customers_unsubscribe_path do %>
+              <button class="btn btn-danger">退会する</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

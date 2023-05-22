@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
 
   enum is_deleted: { not_exist: true, exist: false}
   
-  def address_display
+  def shipping_address_display
     '〒' + postal_code + ' ' + address
   end
   

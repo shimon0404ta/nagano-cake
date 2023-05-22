@@ -21,11 +21,6 @@ Rails.application.routes.draw do
     get 'orders/confirm'            => "orders#confirm"
     post 'orders/confirm'           => "orders#confirm"
     get 'orders/thanks'             => "orders#thanks"
-    get 'customers/my_page'         => "customers#show"
-    get 'customers/edit'            => "customers#edit"
-    patch 'customers'               => "customers#update"
-    get 'customers/unsubscribe'     => "customers#unsubscribe"
-    patch 'customers/withdraw'      => "customers#withdraw"
     
     resources :genres,               only: [:show]
     resources :items,                only: [:show, :index]

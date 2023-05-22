@@ -49,8 +49,8 @@
             <td><%= shipping_address.address %></td>
             <td><%= shipping_address.name %></td>
             <td>
-              <%= link_to "編集する", edit_shipping_addresses_path(shipping_address), class:"btn btn-success mr-3" %>
-              <%= link_to "削除する", shipping_addresses_path(shipping_address), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger" %>
+              <%= link_to "編集する", edit_shipping_address_path(shipping_address), class:"btn btn-success mr-3" %>
+              <%= link_to "削除する", shipping_address_path(shipping_address), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger" %>
             </td>
             </tr>
           <% end %>
