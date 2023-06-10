@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-    @shipping_address = ShippingAddress.where(customer_id: current_customer.id)
+    @shipping_address = ShippingAddress.where(customer_id: current_customer)
   end
   
   def confirm

@@ -34,11 +34,12 @@
               <td>
                 <div class="text-nowrap">販売ステータス</div></td>
               <td>
-                <% if @item.status == false %>
-                  <p class="text-secondary">販売停止中</p>
-                <% else %>
-                  <p class="text-success">販売中</p>
-                <% end %>
+                <%= @item.status_i18n %>
+                <%# if @item.status == false %>
+                  <!--p class="text-secondary">販売停止中</p>
+                <#% else %>
+                  <p class="text-success">販売中</p-->
+                <%# end %>
               </td>
             </tr>
           </tbody>

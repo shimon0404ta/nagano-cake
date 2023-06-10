@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
-  
+
   root to: 'homes#top'
   get 'about' => 'homes#about'
-  
+
   namespace :admin do
+    root 'orders#show'
+    patch "orders/order_status" => "orders#order_status_update"
+    patch "orders/orders_status" => "orders#orders_status_update"
     resources :customers,      only: [:show, :index, :edit, :update]
     resources :orders,         only: [:show, :update, :index]
     resources :order_details,  only: [:update]
     resources :items
     resources :genres
   end
-  
+
   scope module: 'public' do
     get 'customers/my_page'         => "customers#show"
     get 'customers/edit'            => "customers#edit"
@@ -21,14 +24,14 @@ Rails.application.routes.draw do
     get 'orders/confirm'            => "orders#confirm"
     post 'orders/confirm'           => "orders#confirm"
     get 'orders/thanks'             => "orders#thanks"
-    
+
     resources :genres,               only: [:show]
     resources :items,                only: [:show, :index]
     resources :cart_items,           only: [:index, :update, :create, :destroy]
     resources :orders,               only: [:new, :show, :index, :create]
     resources :shipping_addresses,   only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   # 顧客用
   # URL/customers/sign_in...
   devise_for :customers, skip: [:passwords], controllers: {

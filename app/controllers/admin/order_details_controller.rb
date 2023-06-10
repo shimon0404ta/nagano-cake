@@ -11,7 +11,6 @@ class Admin::OrderDetailsController < ApplicationController
 				order_detail.order.update(status: "shipping_preparation")
 			end
 		end
-
 		redirect_to admin_order_path(order_detail.order.id)
   end
 
