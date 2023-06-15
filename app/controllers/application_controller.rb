@@ -3,9 +3,19 @@ class ApplicationController < ActionController::Base
     if resource == :admin
       root_path
     else
-      mypage_path
+      customers_my_page_path
     end
   end
+
+  def after_sign_in_path_for(resource)
+    if resource == :admin
+      root_path
+    else
+      customers_my_page_path
+    end
+  end
+
+
 
   def after_sign_out_path_for(resource)
     if resource == :admin

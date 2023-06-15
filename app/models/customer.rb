@@ -22,9 +22,4 @@ class Customer < ApplicationRecord
     last_name + first_name
   end
 
-  # is_deletedがfalseならtrueを返すようにしている
-  #def active_for_authentication?
-    #super && (is_deleted == false)
-  #end
-
 end
