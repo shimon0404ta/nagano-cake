@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
+  root 'homes#top'
   get 'about' => 'homes#about'
 
   namespace :admin do
-    root 'orders#show'
+    root 'orders#top'
     patch "orders/order_status" => "orders#order_status_update"
     patch "orders/orders_status" => "orders#orders_status_update"
     resources :customers,      only: [:show, :index, :edit, :update]

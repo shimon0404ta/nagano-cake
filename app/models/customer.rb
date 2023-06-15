@@ -12,7 +12,11 @@ class Customer < ApplicationRecord
   validate :last_name, :first_name, :last_name_kana, :first_name_kana,
            :postal_code, :address, :telephone_number, :is_deleted
 
-  enum is_deleted: { not_exist: true, exist: false}
+
+  ## is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 
   def shipping_address_display
     '〒' + postal_code + ' ' + address
