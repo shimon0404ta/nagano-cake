@@ -32,7 +32,12 @@
         </tr>
         <tr>
           <th>会員ステータス</th>
-          <td><%= @customer.is_deleted_i18n %></td>
+          <td><% if @customer.is_deleted == true %>
+              <p class="text-secondary">退会済</p>
+            <% else %>
+              <p class="text-success">有効</p>
+            <% end %>
+          </td>
         </tr>
       </table>
     </div>

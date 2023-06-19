@@ -2,15 +2,31 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+    @update_cart_item = CartItem.find_by(item: @cart_item.item)
+    if @update_cart_item.present? && @cart_item.valid?
+      @cart_item.amount += @update_cart_item.amount
+      @update_cart_item.destroy
+    end
     if @cart_item.save
+      flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
       redirect_to cart_items_path
     else
-      redirect_back(fallback_location: items_path)
-      flash[:notice] = "個数を選択してください。"
+      @item = Item.find(params[:cart_item][:item_id])
+      @cart_item = CartItem.new
+      flash[:alert] = "個数を選択してください。"
+      render "public/items/show"
     end
   end
+    #@cart_item = CartItem.new(cart_item_params)
+    #@cart_item.customer_id = current_customer.id
+    #if @cart_item.save
+      #redirect_to cart_items_path
+    #else
+      #redirect_back(fallback_location: items_path)
+      #flash[:notice] = "個数を選択してください。"
+    #end
+  #end
 
   def index
     @cart_items = current_customer.cart_items

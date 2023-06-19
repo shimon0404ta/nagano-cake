@@ -106,12 +106,14 @@
           </div>
           <div class="col-lg-4">
             <div class="row">
-              <%= f.radio_button :is_deleted, Customer.is_deleteds.key(true) %>
-              <%= f.label :is_deleted_not_exist, Customer.is_deleteds_i18n[:not_exist] %>
-            </div>
-            <div class="row">
-              <%= f.radio_button :is_deleted, Customer.is_deleteds.key(false) %>
-              <%= f.label :is_deleted_exist, Customer.is_deleteds_i18n[:exist] %>
+              <span class="admin-is_deleted-radio_button mr-3">
+                <%= f.radio_button :is_deleted, true %>
+                <%= f.label :is_deleted, '退会', value: true %>
+              </span>
+              <span class="admin-is_deleted-radio_button">
+                <%= f.radio_button :is_deleted, false %>
+                <%= f.label :is_deleted, '有効', value: false %>
+              </span>
             </div>
           </div>
         </div>
